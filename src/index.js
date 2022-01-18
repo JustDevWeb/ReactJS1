@@ -13,13 +13,9 @@ const imgFrank = 'myapp/public/giphy-700.gif';
 ReactDOM.render(
     <React.StrictMode>
         <App name = {myName} />
+        <Message name = {bodyName} text = {somMessage} image={imgFrank} />
     </React.StrictMode>,
     document.getElementById('root')
 );
 
-ReactDOM.render(
-    <React.StrictMode>
-        <Message name = {bodyName} text = {somMessage} image={imgFrank} />
-    </React.StrictMode>,
-    document.getElementById('second-block')
-);
+
