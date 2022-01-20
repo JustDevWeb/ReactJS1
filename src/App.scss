@@ -2,10 +2,136 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.quotes-block{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+   .quotes-title {
+    width: 100%;
+     text-align: center;
+     font-size: 35px;
+
+  }
 }
+.quotes {
+  width:30%;
+  text-align: center;
+}
+
+.button{
+  margin-bottom:10px;
+  border: 0;
+  line-height: 2.5;
+  padding: 0 20px;
+  font-size: 1rem;
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+  border-radius: 10px;
+  background-color: rgb(60, 198, 232);
+  background-image: linear-gradient(to top left,
+          rgba(0, 0, 0, .2),
+          rgba(0, 0, 0, .2) 30%,
+          rgba(0, 0, 0, 0));
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+  inset -2px -2px 3px rgba(0, 0, 0, .6);
+  &:hover {
+    background-color: rgb(56, 129, 153);
+  }
+  &:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+    inset 2px 2px 3px rgba(0, 0, 0, .6);
+  }
+}
+
+
+.my-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .textarea {
+    border: 0;
+    border-radius: 10px;
+    width: 400px;
+    //resize: none;
+    margin-bottom: 10px;
+    background-color: #f6eaea;
+    color: black;
+    outline: none;
+  }
+}
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__field{
+    width: 200px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 0;
+    background-color: #f6eaea;
+    border-radius: 10px;
+    outline: none;
+  }
+  &__button{
+    width:150px;
+    margin-bottom: 10px;
+
+  }
+}
+
+.form-title {
+  text-align: center;
+  margin-top:0;
+}
+
+
+.chat-box {
+  width: 600px;
+  margin: 0 auto;
+  border: 0;
+  border-radius: 10px;
+  background-color: #f6eaea;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  .messageBox{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    word-wrap: break-word;
+    span{
+      font-size: 10px;
+      font-weight: bold;
+    }
+    p {
+      margin: 5px;
+    }
+    &:nth-child(even){
+    align-self: flex-end;
+
+  }
+  }
+}
+
+.chat-wrapper {
+  background-color: #bbd9e7;
+}
+
+
+
+
+
+
+
+
+
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -36,3 +162,4 @@
     transform: rotate(360deg);
   }
 }
+
