@@ -70,7 +70,7 @@ function App() {
                 <div className={"chat-box"}>
                     {messageList.map(message => <div className={"messageBox"}>
                         <span>{message.author}</span>
-                        <p>{message.text}</p>
+                        <p className={"message-text"}>{message.text}</p>
                     </div>)}
                 </div>
 
