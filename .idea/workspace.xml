@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc3b237d-2a1f-4398-8d1e-119c58d5640a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/hw1.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hw1.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +35,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.DirectoryMappings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -49,11 +49,26 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1642317656984</updated>
-      <workItem from="1642317658688" duration="3598000" />
+      <workItem from="1642317658688" duration="4460000" />
+      <workItem from="1642511624804" duration="8509000" />
+      <workItem from="1642524417968" duration="568000" />
+      <workItem from="1642525053838" duration="369000" />
+      <workItem from="1642525457741" duration="8898000" />
+      <workItem from="1642578010776" duration="3297000" />
+      <workItem from="1642592528142" duration="254000" />
+      <workItem from="1642613848020" duration="6228000" />
+      <workItem from="1642620935046" duration="803000" />
+      <workItem from="1642666590503" duration="12940000" />
+      <workItem from="1643003733347" duration="3717000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/ReactJS" />
+    </ignored-roots>
   </component>
 </project>
