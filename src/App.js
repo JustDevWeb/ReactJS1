@@ -1,5 +1,5 @@
 import './App.scss';
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState , useRef} from "react";
 
 
 
@@ -10,10 +10,14 @@ function App() {
     const [login, setLogin] = useState("");
     const [chatMessage, setChatMessage] = useState("");
 
+    const time= new Date();
+    const currentTime= `${time.getHours()}:${time.getMinutes()}`
+    const messagesEndRef = useRef(null)
 
 
 
-    const updateLogin = (e) => {
+
+        const updateLogin = (e) => {
         setLogin(e.target.value)
     }
     const updateChatMessage = (e) => {
@@ -22,7 +26,7 @@ function App() {
     const updateMessageList = (e) => {
 
         setMessageList(prevMessageList => (prevMessageList.concat(
-            {author: login, text: chatMessage}))
+            {author: login, text: chatMessage, time:currentTime}))
         );
         setChatMessage("");
     };
@@ -35,11 +39,11 @@ function App() {
     useEffect(() => {
         let interval=0;
         if (messageList.length>0) {
-            if (messageList[messageList.length - 1].author != "robot") {
+            if (messageList[messageList.length - 1].author !== "bot") {
 
                 interval = setInterval(() => {
                     setMessageList(prevMessageList =>
-                        prevMessageList.concat({author: "robot", text: "this message was generated automatically"}))
+                        prevMessageList.concat({author: "bot", text: "this message was generated automatically",time:currentTime}))
 
                 }, 1500)
             }
@@ -47,8 +51,13 @@ function App() {
     return ()=>{
             clearInterval(interval)
     }
-    }, [messageList])
+    }, [messageList]);
 
+
+    //Auto scrolling
+    useEffect(() => {
+        messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    });
 
     return (
         <div>
@@ -68,10 +77,11 @@ function App() {
                     </button>
                 </form>)}
                 <div className={"chat-box"}>
-                    {messageList.map(message => <div className={"messageBox"}>
+                    {messageList.map((message,index) => <div className={`messageBox ${message.author==='bot' ? 'bot': 'user'}`} key={index}>
                         <span>{message.author}</span>
-                        <p className={"message-text"}>{message.text}</p>
+                        <p className={"message-text"}>{message.text}<sub className={"message-time"}>{message.time}</sub></p>
                     </div>)}
+                    <div ref={messagesEndRef}/>
                 </div>
 
             </div>
