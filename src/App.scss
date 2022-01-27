@@ -1,101 +1,95 @@
 * {
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 .App {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding-top:50px;
 }
 
 .chat-wrapper{
-  min-height: 100vh;
-}
-
-.quotes-block{
+  min-height: 100%;
+  width: fit-content;
+  background-color: white;
   display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-   .quotes-title {
-    width: 100%;
-     text-align: center;
-     font-size: 35px;
-
-  }
-}
-.quotes {
-  width:30%;
-  text-align: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-.button{
-  margin-bottom:10px;
-  border: 0;
-  line-height: 2.5;
-  padding: 0 20px;
-  font-size: 1rem;
-  text-align: center;
-  color: #fff;
-  text-shadow: 1px 1px 1px #000;
-  border-radius: 10px;
-  background-color: rgb(60, 198, 232);
-  background-image: linear-gradient(to top left,
-          rgba(0, 0, 0, .2),
-          rgba(0, 0, 0, .2) 30%,
-          rgba(0, 0, 0, 0));
-  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
-  inset -2px -2px 3px rgba(0, 0, 0, .6);
-  &:hover {
-    background-color: rgb(56, 129, 153);
+.send-button {
+  &.MuiButton-root{
+    margin-bottom:10px;
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 13px;
+    text-align: center;
+    color: #fff;
+    border-radius: 10px;
+    background-color: rgb(60, 198, 232);
+    background-image: linear-gradient(to top left,
+            rgba(0, 0, 0, .2),
+            rgba(0, 0, 0, .2) 30%,
+            rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+    inset -2px -2px 3px rgba(0, 0, 0, .6);
+    &:hover {
+      background-color: rgb(56, 129, 153);
+    }
+    &:active {
+      box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+      inset 2px 2px 3px rgba(0, 0, 0, .6);
+    }
   }
-  &:active {
-    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
-    inset 2px 2px 3px rgba(0, 0, 0, .6);
-  }
-}
 
+}
 
 .my-form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+  width: 400px;
+  background-color:#bbd9e7 ;
+  border-radius: 0 0 10px 10px;
+  padding: 5px;
 
   .textarea {
     border: 0;
     border-radius: 10px;
-    width: 400px;
+    padding: 5px;
+    margin-right: 5px ;
+    width: 100%;
+    font-size: 13px ;
     //resize: none;
     margin-bottom: 10px;
     background-color: #f6eaea;
     color: black;
     outline: none;
     resize: none;
+    &::placeholder{
+      font-size: 13px;
+      font-family: sans-serif;
+    }
+    &:focus {
+      outline: 2px #58aede solid;
+
+    }
   }
 }
 
-.login-form{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  &__field{
-    width: 200px;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 0;
-    background-color: #f6eaea;
-    border-radius: 10px;
-    outline: none;
-  }
-  &__button{
-    width:150px;
-    margin-bottom: 10px;
-
-  }
-}
 
 .form-title {
   text-align: center;
   margin-top:0;
+  width:400px;
+  background-color:#bbd9e7;
+  margin-bottom: 0;
+  border-radius: 10px 10px 0 0;
+  padding: 5px;
+
 }
 
 
@@ -104,7 +98,6 @@
   height: 60vh;
   margin: 0 auto;
   border: 0;
-  border-radius: 10px;
   background-color: #f6eaea;
   padding: 20px;
   display: flex;
@@ -138,9 +131,6 @@
 }
 .bot {
   align-self: flex-end;
-}
-.chat-wrapper {
-  background-color: #bbd9e7;
 }
 
 
