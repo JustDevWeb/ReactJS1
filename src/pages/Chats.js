@@ -8,12 +8,20 @@ const Chats = ({chats})=>{
 
     let {chatId}=useParams();
 
-    return chats[chatId] ? (
+    return  (
+        <div className={'container'}>
         <div className={'chats'}>
+            {chats[chatId] ? <>
             <ChatsList chats={chats} chatId={chatId}/>
             <MessageList messages={chats[chatId].messages}/>
+            </>:
+                <><h3>Chat not found:(</h3>
+                <ChatsList chats={chats} chatId={chatId}/></>
+
+            }
         </div>
-    ): <ChatsList/>
+        </div>
+    )
 }
 
 export default Chats

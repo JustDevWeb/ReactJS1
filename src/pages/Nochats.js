@@ -4,7 +4,7 @@ import {useParams} from "react-router-dom";
 const NoChats = ({chats})=>{
     const {chatId}=useParams();
     return (
-        <div><ChatsList chats={chats} chatId={chatId}/></div>
+        <div className={'container'}><ChatsList chats={chats} chatId={chatId}/></div>
     )
 }
 

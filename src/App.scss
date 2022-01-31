@@ -3,6 +3,11 @@
   font-family: sans-serif;
 }
 
+.container {
+  margin: 0 auto;
+  max-width: 1140px;
+}
+
 .App {
   display: flex;
   justify-content: center;
@@ -15,7 +20,7 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: end;
 }
 
 .send-button {
@@ -140,14 +145,40 @@
 .chats-list{
   display: flex;
   flex-direction: column;
+  padding: 10px;
+  min-width: 200px;
+  a {
+
+    text-decoration: none;
+  }
 }
 
 
+.nav-logo {
+  width:60px;
 
+}
+.logo-link{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  padding: 20px 20px 20px 20px ;
+  h3{
+    padding: 0;
+    margin:0;
+    color: #176692;
+  }
+}
+.tab.MuiTab-root {
+  margin-right: 20px ;
 
+}
 
+.list-message.MuiListItem-root{
+  padding: 0;
 
-
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
