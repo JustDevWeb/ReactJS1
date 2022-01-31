@@ -1,35 +1,19 @@
-import {useState} from "react";
 import {useParams} from "react-router-dom";
 import MessageList from "../components/MessageList";
 import ChatsList from "../components/ChatsList";
-
-const initialChats={
-    id1: {
-        name:'Chat 1', messages:[{
-            text:'Message 1 from chat 1',
-            author:'bot'
-        }]
-    },
-    id2: {
-        name:'Chat 2', messages:[{
-            text:'Message 2 from chat 2',
-            author:'me'
-        }]
-    }
-}
+import NoChats from "./Nochats";
 
 
-const Chats = ()=>{
-    const [chatList,setChatList]=useState(initialChats);
+const Chats = ({chats})=>{
+
     let {chatId}=useParams();
-    return (
+
+    return chats[chatId] ? (
         <div className={'chats'}>
-            <ChatsList chatsList={chatList} chatId={chatId}/>
-            <MessageList messageList={chatList[chatId].messages}/>
+            <ChatsList chats={chats} chatId={chatId}/>
+            <MessageList messages={chats[chatId].messages}/>
         </div>
-    )
+    ): <ChatsList/>
 }
-// {Object.keys(chatList).map((chatId,index)=>(
-//     <div key={index}>{chatList[chatId].name}</div>
-// ))}
+
 export default Chats

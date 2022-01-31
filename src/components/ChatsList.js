@@ -1,17 +1,15 @@
 import {Link} from 'react-router-dom';
 
-const ChatsList = ({chatsList,chatId})=>{
-    console.log(chatsList)
+const ChatsList = ({chats,chatId})=>{
+    console.log(chats)
     return(
-        <div className={'chatsList'}>
-            {Object.keys(chatsList).map((id,index)=>(
-            <div key={index}>
-                <Link to={`/chats/${id}`}>
+        <div className={'chats-list'}>
+                {Object.keys(chats).map((id,index)=>(
+                <Link key={index} to={`/chats/${id}`}>
                     <b style={{ color: id === chatId ? "#000000" : "grey" }}>
-                        {chatsList[id].name}
+                        {chats[id].name}
                     </b>
                 </Link>
-            </div>
         ))}</div>
     )
 }

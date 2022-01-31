@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     BrowserRouter as Router,
     Routes,
@@ -16,8 +16,25 @@ import Chats from './Chats';
 import Profile from './Profile';
 import NoChats from "./Nochats";
 
+const initialChats={
+    id1: {
+        name:'Chat 1', messages:[{
+            text:'Message 1 from chat 1',
+            author:'bot'}
+        ]
+    },
+    id2: {
+        name:'Chat 2', messages:[{
+            text:'Message 2 from chat 2',
+            author:'me'
+        }]
+    }
+
+}
+
 function Routers() {
     const [value, setValue] = React.useState(0);
+    const [chatList,setChatList]=useState(initialChats);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -26,7 +43,7 @@ function Routers() {
     return (
         <Router>
         <div>
-        <Box sx={{display: 'flex'}}>
+        <Box sx={{display: 'flex',justifyContent:'space-between',width:'100%'}}>
         <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example">
             <Tab icon={<HomeIcon />} label="HOME" component={Link} to='/'/>
             <Tab icon={<ChatIcon />} label="CHATS" component={Link} to='/chats'/>
@@ -35,9 +52,9 @@ function Routers() {
         </Box>
             <Routes>
                 <Route path='/' element={<Home/>}/>
-                <Route path='/chats/:chatId' element={<Chats/>}/>
+                <Route path='/chats/:chatId' element={<Chats chats={chatList}/>}/>
                 <Route path='/profile' element={<Profile/>}/>
-                <Route path='*' element={<NoChats/>}/>
+                <Route path='*' element={<NoChats chats={chatList} />}/>
             </Routes>
         </div>
         </Router>

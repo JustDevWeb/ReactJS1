@@ -133,8 +133,14 @@
   align-self: flex-end;
 }
 
-
-
+.chats{
+  display: flex;
+  align-items: center;
+}
+.chats-list{
+  display: flex;
+  flex-direction: column;
+}
 
 
 

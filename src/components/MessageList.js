@@ -8,19 +8,13 @@ import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 
-function MessageList({messageList}) {
-  const [chats] = useState([
-    { id: 1, name: "Chat1" },
-    { id: 2, name: "Chat2" },
-    { id: 3, name: "Chat3" },
-  ]);
-    console.log(messageList)
+function MessageList({messages}) {
   return (
 
     <div className={"chats-box"}>
         <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-            {messageList.map((message,index)=>(
-                <>
+            {messages.map((message,index)=>(
+                // <>
                     <ListItem key={index} alignItems="flex-start">
                         <ListItemAvatar>
                             <Avatar alt="logo" src={Logo} />
@@ -42,8 +36,8 @@ function MessageList({messageList}) {
                         />
 
                     </ListItem>
-                    <Divider variant="inset" component="li" />
-                </>
+                    // <Divider variant="inset" component="li" />
+                // </>
             ))}
       </List>
     </div>

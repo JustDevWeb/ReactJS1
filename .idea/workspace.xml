@@ -5,19 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc3b237d-2a1f-4398-8d1e-119c58d5640a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ChatsList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MessageList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Chats.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Home.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Nochats.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Profile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Routers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/myapp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/myapp.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ChatsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChatsList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MessageList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MessageList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Chats.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Chats.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Nochats.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Nochats.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Routers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Routers.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +78,7 @@
       <workItem from="1643260138878" duration="13670000" />
       <workItem from="1643353500547" duration="3609000" />
       <workItem from="1643367785213" duration="19812000" />
+      <workItem from="1643556088336" duration="8069000" />
     </task>
     <servers />
   </component>
