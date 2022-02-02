@@ -14,8 +14,7 @@ function MessageList({messages}) {
     <div className={"chats-box"}>
         <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper", margin:'0', padding:'0' }}>
             {messages.map((message,index)=>(
-                <>
-                    <ListItem className={'list-message'} key={index} alignItems="flex-start">
+               <ListItem className={'list-message'} key={index} alignItems="flex-start">
                         <ListItemAvatar>
                             <Avatar alt="logo" src={Logo} />
                         </ListItemAvatar>
@@ -36,8 +35,6 @@ function MessageList({messages}) {
                         />
 
                     </ListItem>
-                     <Divider variant="inset" component="li" />
-                 </>
             ))}
       </List>
     </div>
