@@ -16,7 +16,7 @@ import Home from './Home';
 import Chats from './Chats';
 import Profile from './Profile';
 import NoChats from "./Nochats";
-import Button from "@mui/material/Button";
+
 
 const initialChats={
     id1: {
@@ -37,7 +37,6 @@ const initialChats={
 function Routers() {
     const [value, setValue] = React.useState(0);
     const [chatList,setChatList]=useState(initialChats);
-    console.log(Object.keys(chatList)[Object.keys(chatList).length-1])
 
     // const updateChatList = ()=>{
     // setChatList((prevChatList)=>{
