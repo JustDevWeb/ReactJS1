@@ -38,21 +38,6 @@ function Routers() {
     const [value, setValue] = React.useState(0);
     const [chatList,setChatList]=useState(initialChats);
 
-    // const updateChatList = ()=>{
-    // setChatList((prevChatList)=>{
-    //     prevChatList.id3 = {name: 'asdas', messages: [{
-    //         text: 'Message3', author: 'test'
-    //         }] }
-        // let prevId = Object.keys(prevChatList)[Object.keys(prevChatList).length-1];
-        // console.log(typeof prevId)
-        // let newId=prevId.split('');
-        // prevChatList[newId[newId.length-1]+1]= {name: `Chat ${newId[newId.length-1]+1}`, messages:[{
-        //     text: 'Message 3 from chat 3',
-        //         author: 'me'}]
-        // }
-
-    // })
-    // }
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -91,7 +76,7 @@ function Routers() {
           </Tabs>
         </Box>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" exact element={<Home />} />
           <Route path="/chats/:chatId" element={<Chats chats={chatList} />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<NoChats chats={chatList} />} />

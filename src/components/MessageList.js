@@ -7,8 +7,12 @@ import ListItemText from "@mui/material/ListItemText";
 import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
+import {useSelector} from "react-redux";
+import LogoBot from '../logobot.png';
 
 function MessageList({messages}) {
+const {name} = useSelector( state=>state)
+
   return (
 
     <div className={"chats-box"}>
@@ -16,7 +20,7 @@ function MessageList({messages}) {
             {messages.map((message,index)=>(
                <ListItem className={'list-message'} key={index} alignItems="flex-start">
                         <ListItemAvatar>
-                            <Avatar alt="logo" src={Logo} />
+                            <Avatar alt="logo" src={message.author=== name ? Logo : LogoBot } />
                         </ListItemAvatar>
                         <ListItemText
                             primary={message.author}

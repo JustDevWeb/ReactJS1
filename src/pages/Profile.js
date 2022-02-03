@@ -1,26 +1,33 @@
-import {useCallback} from "react";
-import {toogleShowName} from "../store/profile/chatActions";
+import {useCallback, useState} from "react";
+import {CHANGE_NAME} from "../store/profile/actions";
 import {useDispatch, useSelector} from "react-redux";
 
 const Profile = ()=>{
     const {name,showName}= useSelector((state)=>state);
-    const dispatch = useDispatch()
+    const [value,setValue] = useState(name);
+    const dispatch = useDispatch();
 
-    const setShowName = useCallback(()=>{
-        dispatch(toogleShowName)
-    },[dispatch])
-    console.log(showName,name)
+    const handleChange = useCallback((event) => {
+      setValue(event.target.value);
+    }, []);
+
+    const setName = useCallback(() => {
+      dispatch({ type: CHANGE_NAME, payload: value });
+    }, [dispatch,value]);
+
+
+
+
     return (
         <div className={'container'}>
             <h4>Profile</h4>
             <input
-                type="checkbox"
-                checked={showName}
-                value={showName}
-                onChange={setShowName}
+                type="text"
+                value={value}
+                onChange={handleChange}
             />
-
-            <div>{showName&&<div>{name}</div>}</div>
+            <span>Show Name</span>
+            <button onClick={setName}>Изменить имя</button>
         </div>
     );
 };
