@@ -3,7 +3,7 @@ import {CHANGE_NAME} from "../store/profile/actions";
 import {useDispatch, useSelector} from "react-redux";
 
 const Profile = ()=>{
-    const {name,showName}= useSelector((state)=>state);
+    const {name,showName}= useSelector((state)=>state.profile);
     const [value,setValue] = useState(name);
     const dispatch = useDispatch();
 

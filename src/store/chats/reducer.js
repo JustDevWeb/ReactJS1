@@ -8,7 +8,7 @@ const initialState = {
 // [{
 // id:string,name:string},{}]
 
-const chatsReducer = (state,action)=>{
+const chatsReducer = (state=initialState,action)=>{
     switch (action.type){
         case ADD_CHAT:{
             return {

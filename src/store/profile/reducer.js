@@ -6,7 +6,7 @@ const initialState = {
 
 }
 
-const reducers = (state = initialState, action)=> {
+const profileReducer = (state = initialState, action)=> {
         switch (action.type){
         case CHANGE_NAME:
             return {
@@ -18,4 +18,4 @@ const reducers = (state = initialState, action)=> {
     }
 };
 
-export default reducers
+export default profileReducer;

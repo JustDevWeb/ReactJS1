@@ -1,43 +1,25 @@
-import React, {useState} from "react";
+import React from "react";
 import {
     BrowserRouter as Router,
     Routes,
     Route,
     Link
 } from 'react-router-dom';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import {Tabs,Tab,Box} from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import ChatIcon from '@mui/icons-material/Chat';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import {Box} from "@mui/material";
-import MenuLogo from "../logomsn.png"
+import MenuLogo from "../navlogo.png"
 import Home from './Home';
 import Chats from './Chats';
 import Profile from './Profile';
 import NoChats from "./Nochats";
 
 
-const initialChats={
-    id1: {
-        name:'Chat 1', messages:[{
-            text:'Message 1 from chat 1',
-            author:'bot'}
-        ]
-    },
-    id2: {
-        name:'Chat 2', messages:[{
-            text:'Message 2 from chat 2',
-            author:'me'
-        }]
-    }
 
-}
 
 function Routers() {
     const [value, setValue] = React.useState(0);
-    const [chatList,setChatList]=useState(initialChats);
-
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -77,9 +59,9 @@ function Routers() {
         </Box>
         <Routes>
           <Route path="/" exact element={<Home />} />
-          <Route path="/chats/:chatId" element={<Chats chats={chatList} />} />
+          <Route path="/chats/:chatId" element={<Chats  />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="*" element={<NoChats chats={chatList} />} />
+          <Route path="*" element={<NoChats  />} />
         </Routes>
       </Router>
     );
