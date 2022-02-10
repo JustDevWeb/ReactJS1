@@ -1,3 +1,5 @@
+import {CHANGE_NAME} from "./actions";
+
 const initialState = {
     showName: true,
     name: 'Jane'
@@ -5,16 +7,15 @@ const initialState = {
 }
 
 const profileReducer = (state = initialState, action)=> {
-    console.log(action)
-    switch (action.type){
-        case 'EXAMPLE_ACTION':
+        switch (action.type){
+        case CHANGE_NAME:
             return {
                 ...state,
-                showName: !state.showName
+                name: action.payload
             }
 
         default:return state
     }
-}
+};
 
-export default profileReducer
+export default profileReducer;
