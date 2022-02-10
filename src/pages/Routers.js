@@ -11,7 +11,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import MenuLogo from "../navlogo.png"
 import Home from './Home';
-import Chats from './Chats';
+import ChatsDisplay from './ChatsDisplay';
 import Profile from './Profile';
 import NoChats from "./Nochats";
 
@@ -59,7 +59,7 @@ function Routers() {
         </Box>
         <Routes>
           <Route path="/" exact element={<Home />} />
-          <Route path="/chats/:chatId" element={<Chats  />} />
+          <Route path="/chats/:chatId" element={<ChatsDisplay  />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<NoChats  />} />
         </Routes>

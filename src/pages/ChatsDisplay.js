@@ -5,7 +5,7 @@ import NoChats from "./Nochats";
 import ControlPanel from "../components/ControlPanel";
 
 
-const Chats = ()=>{
+const ChatsDisplay = ()=>{
 
 
 
@@ -23,4 +23,4 @@ const Chats = ()=>{
     )
 }
 
-export default Chats;
+export default ChatsDisplay;
