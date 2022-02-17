@@ -1,5 +1,5 @@
 import LogoPerson from '../logoperson.png'
-import {List,ListItem,ListItemAvatar,Avatar,ListItemText,Typography} from "@mui/material";
+import {List, ListItem, ListItemAvatar, Avatar, ListItemText, Typography, Box} from "@mui/material";
 import React, {useCallback, useEffect, useRef, useState} from "react";
 // import Divider from "@mui/material/Divider";
 import {useSelector} from "react-redux";
@@ -26,7 +26,7 @@ const renderMessage = useCallback((message,index)=>{ return (
         border:"0",
         borderRadius:"10px",
         backgroundColor:"#bbd9e7",
-    }}
+        }}
     className={`messageBox ${message.author === profileName ? "user" : "bot"}`}
     key={index}
 
@@ -38,19 +38,42 @@ const renderMessage = useCallback((message,index)=>{ return (
       />
     </ListItemAvatar>
     <ListItemText
-      primary={message.text}
-      secondary={
-        <React.Fragment>
+      primary={<React.Fragment>
           <Typography
-            sx={{ display: "inline" }}
-            component="span"
-            variant="body2"
-            color="text.primary"
-          />
-          {message.author}
-        </React.Fragment>
+              sx={{ display: 'inline',fontSize: '13px' }}
+              component="p"
+              variant="body1"
+              color="text.primary"
+          >
+              {message.text}
+          </Typography>
+      </React.Fragment>}
+      secondary={
+        <Box component={"span"} className={"message-info"}>
+          <React.Fragment>
+            <Typography
+                sx={{ display: 'inline',fontSize: '12px' }}
+                component="span"
+                variant="caption"
+                color="#0022ff"
+            >
+                {message.author}
+            </Typography>
+            <Typography
+                sx={{ display: 'inline',fontSize: '12px' }}
+                component="span"
+                variant="caption"
+                color="red"
+            >
+                {message.date}
+            </Typography>
+          </React.Fragment>
+            </Box>
+
+
+
       }
-    />
+  />
   </ListItem>
 );},[]);
 

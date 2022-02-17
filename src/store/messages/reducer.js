@@ -1,4 +1,5 @@
 import {ADD_MESSAGE} from "./actions";
+// import {DELETE_CHAT} from "../chats/actions";
 
 const initialState = {
     messageList:{}
@@ -36,6 +37,12 @@ const messagesReducer = (state = initialState, action) => {
                 }
             }
         }
+
+        // case DELETE_CHAT:{
+        //     return {
+        //         ...state,
+        //     }
+        // }
         default: return state;
     }
 }
