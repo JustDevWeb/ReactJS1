@@ -1,10 +1,11 @@
 import {put,delay,takeLatest} from "redux-saga/effects";
 import {ADD_MESSAGE_WITH_SAGA, addMessage} from "./messages/actions";
+import {getTime} from "../lib/getTime";
 
 function* onAddMessageWithSaga(action){
     yield put(addMessage(action.chatId, action.message));
     if(action.message.author !== 'bot'){
-        const botMessage={text: 'Hello from Saga dude', author:'bot'};
+        const botMessage={text: 'Hello from Saga dude', author:'bot',date: getTime()};
         yield delay(2000);
         yield put (addMessage(action.chatId, botMessage));
     }

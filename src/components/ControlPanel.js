@@ -4,14 +4,13 @@ import React, {useCallback, useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import {addMessageWithSaga} from "../store/messages/actions";
+import {getTime} from "../lib/getTime";
 
 const ControlPanel = ()=>{
-    const getTime = useCallback(()=>{
-        return `${new Date().getHours()}:${new Date().getMinutes()}`
-    },[]);
+
 
     const [value, setValue] = useState([]);
-    const [time,setTime]= useState(getTime);
+    // const [time,setTime]= useState(getTime);
     // const [login] = useState({ me: "me", bot: "bot" });
 
 
@@ -30,11 +29,10 @@ const ControlPanel = ()=>{
 
     const handleButton= useCallback(
         ()=>{
-            setTime(getTime);
-            dispatch(addMessageWithSaga(chatId,{
+                dispatch(addMessageWithSaga(chatId,{
                 text:value,
                 author:profileName,
-                date:time
+                date:getTime()
             }));
             setValue("")
         }

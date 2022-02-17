@@ -5,25 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc3b237d-2a1f-4398-8d1e-119c58d5640a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/store/chats/selectors.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/middleware.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/sagas.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/getTime.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ChatsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChatsList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ControlPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ControlPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MessageList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MessageList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chatDisplay.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Chats.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ChatsDisplay.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Routers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Routers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/chats/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/chats/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/chats/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/chats/reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/messages/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/messages/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/messages/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/messages/reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/middleware.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/sagas.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/sagas.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +98,11 @@
       <workItem from="1644215990031" duration="3894000" />
       <workItem from="1644225442354" duration="5644000" />
       <workItem from="1644467383990" duration="16852000" />
-      <workItem from="1644490793249" duration="10752000" />
+      <workItem from="1644490793249" duration="11483000" />
+      <workItem from="1644510548659" duration="208000" />
+      <workItem from="1644512947395" duration="1471000" />
+      <workItem from="1644593178195" duration="657000" />
+      <workItem from="1644834954260" duration="4402000" />
     </task>
     <servers />
   </component>
