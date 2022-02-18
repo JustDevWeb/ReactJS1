@@ -1,9 +1,9 @@
-import LogoPerson from '../logoperson.png'
+import LogoPerson from '../assets/logoperson.png'
 import {List, ListItem, ListItemAvatar, Avatar, ListItemText, Typography, Box} from "@mui/material";
-import React, {useCallback, useEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useRef} from "react";
 // import Divider from "@mui/material/Divider";
 import {useSelector} from "react-redux";
-import LogoBot from '../logobot.png';
+import LogoBot from '../assets/logobot.png';
 import {useParams} from "react-router-dom";
 
 

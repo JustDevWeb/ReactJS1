@@ -1,21 +1,20 @@
-import {ADD_MESSAGE, addMessage} from "./messages/actions";
-import {getTime} from "../lib/getTime";
+import {API_URL_PUBLIC} from "../contants/endpoints";
+import {getGistsFailure, getGistsRequest, getGistsSuccess} from "./gists/actions";
 
-const middleware = store=>next=>action=> {
+export const getAllGists=()=>async (dispatch)=>{
 
-  if(action.type=== ADD_MESSAGE && action.message.author!=='bot'){
-      const botMessage = {
-          text: "Hello i am bot , i send message from middleware ",
-          author: "bot",
+    dispatch(getGistsRequest());
 
-      }
-      setTimeout(()=>{
-          store.dispatch(addMessage(action.chatId, botMessage));
-      },1500)
-  }
+    try {
+        const res = await fetch (API_URL_PUBLIC);
 
-    return next(action)
+        if (!res.ok){
+          throw new Error (`Request failed with status ${res.status}`);
+        }
+        const result = await res.json();
+
+        dispatch (getGistsSuccess(result));
+        } catch (err) {
+        dispatch (getGistsFailure(err))
+    }
 }
-
-
-export default middleware;

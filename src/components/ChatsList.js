@@ -1,6 +1,6 @@
 import {Link, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
-import {Button,Chip, Dialog, DialogTitle, TextField} from "@mui/material";
+import {Button,Dialog, DialogTitle, TextField} from "@mui/material";
 import {useState} from "react";
 import {addChat, deleteChat} from "../store/chats/actions";
 import {Delete} from "@mui/icons-material";
