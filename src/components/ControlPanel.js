@@ -3,21 +3,22 @@ import SendIcon from "@mui/icons-material/Send";
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
-import {addMessage} from "../store/messages/actions";
+import {addMessageWithSaga} from "../store/messages/actions";
+import {getTime} from "../lib/getTime";
 
 const ControlPanel = ()=>{
 
 
     const [value, setValue] = useState([]);
+    // const [time,setTime]= useState(getTime);
     // const [login] = useState({ me: "me", bot: "bot" });
 
 
-    const time = new Date();
-    const currentTime = `${time.getHours()}:${time.getMinutes()}`;
+
+
     const inputFocus = useRef(null);
 
     const profileName=useSelector(state=>state.profile.name);
-    const messages= useSelector(state=>state.messages.messageList);
     const dispatch = useDispatch();
     const {chatId} = useParams();
 
@@ -25,39 +26,24 @@ const ControlPanel = ()=>{
         setValue(event.target.value);
     },[])
 
-    const sendMessage= (text,author)=>{
-        dispatch(addMessage(chatId,{
-            text:text,
-            author:author
-        }))
-    };
 
-    const handleButton=()=>{
-        sendMessage(value,profileName);
-        setValue("");
-    };
-
-    //Auto scrolling
-    useEffect(() => {
-                inputFocus.current.focus();
-    });
-
-
-    useEffect(() => {
-        let interval ;
-        const currentChat= messages[chatId];
-        if (currentChat?.length > 0 && currentChat[currentChat?.length - 1]?.author === profileName ) {
-                interval = setInterval(() => {
-                    const botMessage="this message was generated automatically"
-                    sendMessage(botMessage,"bot")
-
-                }, 1500);
-
+    const handleButton= useCallback(
+        ()=>{
+                dispatch(addMessageWithSaga(chatId,{
+                text:value,
+                author:profileName,
+                date:getTime()
+            }));
+            setValue("")
         }
-        return () => {
-            clearInterval(interval);
-        };
-    }, [messages[chatId]]);
+    ,[value,chatId,dispatch])
+
+
+
+
+    useEffect(() => {
+        inputFocus.current.focus();
+            }, []);
 
     //Auto scrolling
     // useEffect(() => {

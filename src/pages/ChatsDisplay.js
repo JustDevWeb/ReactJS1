@@ -1,11 +1,9 @@
-import {useParams} from "react-router-dom";
 import MessageList from "../components/MessageList";
-import ChatsList from "../components/ChatsList";
-import NoChats from "./Nochats";
+import ChatsList from "../components/ChatsList.js";
 import ControlPanel from "../components/ControlPanel";
 
 
-const Chats = ()=>{
+const ChatsDisplay = ()=>{
 
 
 
@@ -23,4 +21,4 @@ const Chats = ()=>{
     )
 }
 
-export default Chats;
+export default ChatsDisplay;
