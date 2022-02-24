@@ -1,17 +1,22 @@
 import {Link, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {Button,Dialog, DialogTitle, TextField} from "@mui/material";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {addChat, deleteChat} from "../store/chats/actions";
 import {Delete} from "@mui/icons-material";
+import {getDatabase,ref,push,set,get,child,remove} from 'firebase/database'
+import firebase from "../services/firebase";
 
 
 const ChatsList = ()=>{
-    const dispatch = useDispatch();
-    const chats = useSelector(state=>state.chats.chatList);
+    // const dispatch = useDispatch();
+    // const chats = useSelector(state=>state.chats.chatList);
     const {chatId} = useParams();
+    const [chats,setChats]=useState([]);
     const [newChatName,setNewChatName]=useState('')
     const [visible,setVisible]=useState(false);
+
+    const handleChange=(e)=>{setNewChatName(e.target.value)};
     const handleClose = ()=>{
         setVisible(false)
     };
@@ -19,18 +24,41 @@ const ChatsList = ()=>{
     setVisible(true)
     };
 
-    const handleChange=(e)=>{setNewChatName(e.target.value)};
-    const handleDelete=(index)=>{
-        dispatch(deleteChat(index));
+
+    const handleDelete=(id)=>{
+        const db = getDatabase(firebase);
+        const chatRef = ref(db,`/chats/${id}`);
+        const messageRef = ref(db,`/messages/${id}`);
+        remove(chatRef).then(res=>console.log(res));
+        remove(messageRef).then(res=>console.log(res));
     }
     const onAddChat=()=>{
-        dispatch(addChat(newChatName));
+        const db = getDatabase(firebase);
+        const chatRef = ref(db,'/chats');
+        const newChatRef = push(chatRef);
+        set(newChatRef,{name:newChatName}).then((res)=>{console.log(res)})
+        // dispatch(addChat(newChatName));
         setNewChatName('');
         handleClose();
     };
 
+    useEffect(()=>{
+        const db = getDatabase(firebase);
+        const dbRef = ref(db);
+        get (child(dbRef,'/chats')).then((snapshot)=>{
+            if(snapshot.exists()) {
+                const objVal = snapshot.val();
+                const chatIds = Object.keys(objVal);
+                const chatArr = chatIds.map(item=>({id: item, name:objVal[item].name}));
+                setChats(chatArr);
+            } else {
+                console.log('no-data');
+            }
+        })
+    },[])
+
     return (
-      <div className={"chats-list"} >
+      <div style={{padding:'10px'}} className={"chats-list"} >
         {chats.map((chat, index) => (
           <div key={index} >
             <Link to={`/chats/${chat.id}`}>
@@ -39,7 +67,7 @@ const ChatsList = ()=>{
               </b>
               <button
                 onClick={() => {
-                  handleDelete(index);
+                  handleDelete(chat.id);
                 }}
               >
                 <Delete />

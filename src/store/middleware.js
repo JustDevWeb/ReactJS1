@@ -1,20 +1,23 @@
-import {API_URL_PUBLIC} from "../contants/endpoints";
-import {getGistsFailure, getGistsRequest, getGistsSuccess} from "./gists/actions";
+import { API_URL_PUBLIC } from "../contants/endpoints";
+import {
+  getGistsFailure,
+  getGistsRequest,
+  getGistsSuccess,
+} from "./gists/actions";
 
-export const getAllGists=()=>async (dispatch)=>{
+export const getAllGists = () => async (dispatch) => {
+  dispatch(getGistsRequest());
 
-    dispatch(getGistsRequest());
+  try {
+    const res = await fetch(API_URL_PUBLIC);
 
-    try {
-        const res = await fetch (API_URL_PUBLIC);
-
-        if (!res.ok){
-          throw new Error (`Request failed with status ${res.status}`);
-        }
-        const result = await res.json();
-
-        dispatch (getGistsSuccess(result));
-        } catch (err) {
-        dispatch (getGistsFailure(err))
+    if (!res.ok) {
+      throw new Error(`Request failed with status ${res.status}`);
     }
-}
+    const result = await res.json();
+
+    dispatch(getGistsSuccess(result));
+  } catch (err) {
+    dispatch(getGistsFailure(err));
+  }
+};
