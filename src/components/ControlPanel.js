@@ -1,63 +1,49 @@
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import React, {useCallback, useEffect, useRef, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
-import {addMessage} from "../store/messages/actions";
+import {addMessageWithSaga, addMessageWithThunk} from "../store/messages/actions";
+import {getTime} from "../lib/getTime";
+import {getDatabase, push, ref, set} from "firebase/database";
+import firebase from "../services/firebase";
 
-const ControlPanel = ()=>{
+const ControlPanel = () => {
 
 
-    const [value, setValue] = useState([]);
-    // const [login] = useState({ me: "me", bot: "bot" });
-
-
-    const time = new Date();
-    const currentTime = `${time.getHours()}:${time.getMinutes()}`;
+    const [value, setValue] = useState('');
     const inputFocus = useRef(null);
-
-    const profileName=useSelector(state=>state.profile.name);
-    const messages= useSelector(state=>state.messages.messageList);
-    const dispatch = useDispatch();
+    const profileName = useSelector(state => state.profile.name);
+    // const dispatch = useDispatch();
     const {chatId} = useParams();
 
-    const handleChange = useCallback ((event) => {
+
+    const handleChange = useCallback((event) => {
         setValue(event.target.value);
-    },[])
+    }, [value]);
 
-    const sendMessage= (text,author)=>{
-        dispatch(addMessage(chatId,{
-            text:text,
-            author:author
-        }))
-    };
 
-    const handleButton=()=>{
-        sendMessage(value,profileName);
-        setValue("");
-    };
+    const handleButton = useCallback(
+        () => {
 
-    //Auto scrolling
+            const message = {
+                text: value,
+                author: profileName
+            };
+
+            const db = getDatabase(firebase);
+            const messageRef = ref(db, `/messages/${chatId}`);
+            const newMessageRef = push(messageRef);
+            set(newMessageRef, message).then((res) => console.log(res));
+
+
+            setValue('');
+        }, [value, chatId, profileName]);
+
+
     useEffect(() => {
-                inputFocus.current.focus();
-    });
-
-
-    useEffect(() => {
-        let interval ;
-        const currentChat= messages[chatId];
-        if (currentChat?.length > 0 && currentChat[currentChat?.length - 1]?.author === profileName ) {
-                interval = setInterval(() => {
-                    const botMessage="this message was generated automatically"
-                    sendMessage(botMessage,"bot")
-
-                }, 1500);
-
-        }
-        return () => {
-            clearInterval(interval);
-        };
-    }, [messages[chatId]]);
+        inputFocus.current.focus();
+    }, []);
 
     //Auto scrolling
     // useEffect(() => {
@@ -82,7 +68,7 @@ const ControlPanel = ()=>{
                 disabled={!value}
                 onClick={handleButton}
                 variant="contained"
-                endIcon={<SendIcon />}
+                endIcon={<SendIcon/>}
             >
                 Send
             </Button>

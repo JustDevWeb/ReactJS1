@@ -1,70 +1,90 @@
 import React from "react";
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-    Link
-} from 'react-router-dom';
-import {Tabs,Tab,Box} from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
-import ChatIcon from '@mui/icons-material/Chat';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import MenuLogo from "../navlogo.png"
-import Home from './Home';
-import Chats from './Chats';
-import Profile from './Profile';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Tabs, Tab, Box } from "@mui/material";
+import MenuLogo from "../assets/navlogo.png";
+import Home from "./Home";
+import ChatsDisplay from "./ChatsDisplay";
+import Profile from "./Profile";
 import NoChats from "./Nochats";
-
-
-
+import Gists from "./Gists";
+import RequiredAuth from "../hocs/RequiredAuth";
+import Login from "./Login";
+import SignUp from "./SignUp";
+import useAuth from "../hooks/useAuth";
+import Button from "@mui/material/Button";
+import { Logout } from "@mui/icons-material";
 
 function Routers() {
-    const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(false);
+  const auth = useAuth();
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
-    return (
-      <Router>
-        <Box sx={{ display: "flex", maxWidth: "1140px", alignItems:'center',margin:'0 auto' }}>
-                      <Link className={'logo-link'} to={"/"}>
-            <img className={"nav-logo"} src={MenuLogo} alt={"menu-logo"} />
-            <h3>Messenger</h3>
+  return (
+    <Router>
+      <Box
+        sx={{
+          display: "flex",
+          maxWidth: "1140px",
+          alignItems: "center",
+          margin: "0 auto",
+        }}
+      >
+        <Link className={"logo-link"} to={"/"}>
+          <img className={"nav-logo"} src={MenuLogo} alt={"menu-logo"} />
+          <h3>Messenger</h3>
+        </Link>
+        <Tabs
+          sx={{ marginLeft: "20%", marginRight: "auto" }}
+          value={value}
+          onChange={handleChange}
+          aria-label="icon label tabs example"
+          selectionFollowsFocus
+        >
+          <Tab className={"tab"} label="HOME" component={Link} to="/" />
+          <Tab className={"tab"} label="CHATS" component={Link} to="/chats" />
+          <Tab
+            className={"tab"}
+            label="PROFILE"
+            component={Link}
+            to="/profile"
+          />
+          <Tab className={"tab"} label="GISTS" component={Link} to="/gists" />
+          <Tab
+            className={"tab"}
+            label="Sign up"
+            component={Link}
+            to="/signup"
+          />
+          <Tab className={"tab"} label="Login" component={Link} to="/login" />
+          <Tab className={"tab"} label="Sign out" />
+        </Tabs>
+        <Button
+          onClick={() => auth.signout(() => {})}
+          variant={"contained"}
+          endIcon={<Logout />}
+        >
+          Logout
+        </Button>
+      </Box>
+      <Routes>
+        <Route exact element={<Home />} />
 
-          </Link>
-          <Tabs
-            sx={{ marginLeft:'20%',marginRight:'auto' }}
-            value={value}
-            onChange={handleChange}
-            aria-label="icon label tabs example"
-          >
-            <Tab className={'tab'} icon={<HomeIcon />}
-                 label="HOME"
-                 component={Link}
-                 to="/" />
-            <Tab className={'tab'}
-              icon={<ChatIcon />}
-              label="CHATS"
-              component={Link}
-              to="/chats"
-            />
-            <Tab className={'tab'}
-              icon={<AccountBoxIcon />}
-              label="PROFILE"
-              component={Link}
-              to="/profile"
-            />
-          </Tabs>
-        </Box>
-        <Routes>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/chats/:chatId" element={<Chats  />} />
+        <Route path="/" exact element={<Home />} />
+        <Route path="/login" exact element={<Login />} />
+        <Route path="/signup" exact element={<SignUp />} />
+        <Route element={<RequiredAuth />}>
+          <Route path="/chats/" exact element={<NoChats />} />
+          <Route path="/chats/:chatId" element={<ChatsDisplay />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="*" element={<NoChats  />} />
-        </Routes>
-      </Router>
-    );
+          <Route path="/gists" element={<Gists />} />
+        </Route>
+        <Route path="*" element={<NoChats />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default Routers;
