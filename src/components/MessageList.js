@@ -9,30 +9,21 @@ import {
   Box,
 } from "@mui/material";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-// import Divider from "@mui/material/Divider";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import LogoBot from "../assets/logobot.png";
 import { useParams } from "react-router-dom";
-import { getDatabase, get, ref, child } from "firebase/database";
-import firebase from "../services/firebase";
+import {getMessagesByChatIdWithFB} from "../store/middleware";
 
 const MessageList = () => {
-  const profileName = useSelector((state) => state.profile.name);
-  const [messages, setMessages] = useState([]);
+  const profileName = useSelector(state => state.profile.name);
+  const dispatch = useDispatch();
+  const messages = useSelector(state=>state.messages.messageList);
+  // const [messages, setMessages] = useState([]);
   const { chatId } = useParams();
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    const db = getDatabase(firebase);
-    const dbRef = ref(db);
-    get(child(dbRef, `/messages/${chatId}`)).then((snapshot) => {
-      if (snapshot.exists()) {
-        const msg = Object.values(snapshot.val());
-        setMessages(msg);
-      } else {
-        console.error("error");
-      }
-    });
+    dispatch(getMessagesByChatIdWithFB(chatId));
     messagesEndRef.current.scrollIntoView({ behavior: "auto" });
   }, [chatId]);
 
@@ -103,17 +94,8 @@ const MessageList = () => {
     <div>
       <List
         className={"chat-box"}
-        // sx={{
-        //   width: "100%",
-        //   maxWidth: 360,
-        //   bgcolor: "background.paper",
-        //   margin: "0",
-        //   padding: "0",
-        //   display: "flex",
-        //   flexDirection: "column"
-        // }}
-      >
-        {messages.map((message, index) => renderMessage(message, index))}
+         >
+        {Object.keys(messages).map((message, index) => renderMessage(message, index))}
         <div ref={messagesEndRef} />
       </List>
     </div>

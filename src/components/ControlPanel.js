@@ -1,12 +1,13 @@
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import React, {useCallback, useEffect, useRef, useState} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import {addMessageWithSaga, addMessageWithThunk} from "../store/messages/actions";
 import {getTime} from "../lib/getTime";
 import {getDatabase, push, ref, set} from "firebase/database";
 import firebase from "../services/firebase";
+import {addMessageWithFB, getMessagesByChatIdWithFB} from "../store/middleware";
 
 const ControlPanel = () => {
 
@@ -14,7 +15,7 @@ const ControlPanel = () => {
     const [value, setValue] = useState('');
     const inputFocus = useRef(null);
     const profileName = useSelector(state => state.profile.name);
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const {chatId} = useParams();
 
 
@@ -31,17 +32,13 @@ const ControlPanel = () => {
                 author: profileName
             };
 
-            const db = getDatabase(firebase);
-            const messageRef = ref(db, `/messages/${chatId}`);
-            const newMessageRef = push(messageRef);
-            set(newMessageRef, message).then((res) => console.log(res));
-
-
+            dispatch(addMessageWithFB(chatId,message))
             setValue('');
         }, [value, chatId, profileName]);
 
 
     useEffect(() => {
+
         inputFocus.current.focus();
     }, []);
 

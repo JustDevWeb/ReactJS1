@@ -6,17 +6,18 @@ import {addChat, deleteChat} from "../store/chats/actions";
 import {Delete} from "@mui/icons-material";
 import {getDatabase,ref,push,set,get,child,remove} from 'firebase/database'
 import firebase from "../services/firebase";
+import {addChatWithFb, deleteChatWithFb, initTrackerWithFB} from "../store/middleware";
 
 
 const ChatsList = ()=>{
-    // const dispatch = useDispatch();
-    // const chats = useSelector(state=>state.chats.chatList);
+    const dispatch = useDispatch();
+    const chats = useSelector(state=>state.chats.chatList);
     const {chatId} = useParams();
-    const [chats,setChats]=useState([]);
     const [newChatName,setNewChatName]=useState('')
     const [visible,setVisible]=useState(false);
 
     const handleChange=(e)=>{setNewChatName(e.target.value)};
+
     const handleClose = ()=>{
         setVisible(false)
     };
@@ -26,35 +27,16 @@ const ChatsList = ()=>{
 
 
     const handleDelete=(id)=>{
-        const db = getDatabase(firebase);
-        const chatRef = ref(db,`/chats/${id}`);
-        const messageRef = ref(db,`/messages/${id}`);
-        remove(chatRef).then(res=>console.log(res));
-        remove(messageRef).then(res=>console.log(res));
+       dispatch(deleteChatWithFb(id));
     }
     const onAddChat=()=>{
-        const db = getDatabase(firebase);
-        const chatRef = ref(db,'/chats');
-        const newChatRef = push(chatRef);
-        set(newChatRef,{name:newChatName}).then((res)=>{console.log(res)})
-        // dispatch(addChat(newChatName));
+        dispatch(addChatWithFb(newChatName));
         setNewChatName('');
         handleClose();
     };
 
     useEffect(()=>{
-        const db = getDatabase(firebase);
-        const dbRef = ref(db);
-        get (child(dbRef,'/chats')).then((snapshot)=>{
-            if(snapshot.exists()) {
-                const objVal = snapshot.val();
-                const chatIds = Object.keys(objVal);
-                const chatArr = chatIds.map(item=>({id: item, name:objVal[item].name}));
-                setChats(chatArr);
-            } else {
-                console.log('no-data');
-            }
-        })
+        dispatch(initTrackerWithFB());
     },[])
 
     return (

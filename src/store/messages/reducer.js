@@ -1,4 +1,4 @@
-import {ADD_MESSAGE} from "./actions";
+import {ADD_MESSAGE, UPDATE_MESSAGES} from "./actions";
 // import {DELETE_CHAT} from "../chats/actions";
 
 const initialState = {
@@ -18,32 +18,42 @@ const initialState = {
  */
 
 const messagesReducer = (state = initialState, action) => {
-    switch (action.type){
-        case ADD_MESSAGE: {
-            console.log(action);
-            const currentList=state.messageList[action.chatId] || [];
+    switch (action.type) {
+      case ADD_MESSAGE: {
+        console.log(action);
+        const currentList = state.messageList[action.chatId] || [];
+        return {
+          ...state,
+          messageList: {
+            ...state.messageList,
+            [action.chatId]: [
+              ...currentList,
+              {
+                ...action.message,
+                id: `${action.chatId}${currentList.length}`,
+              },
+            ],
+          },
+        };
+      }
+
+
+      case UPDATE_MESSAGES: {
             return {
-                ...state,
+            ...state,
                 messageList: {
-                    ...state.messageList,
-                    [action.chatId]:[
-                        ...currentList,
-                        {
-                            ...action.message,
-                            id: `${action.chatId}${currentList.length}`
-                        }
-
-                    ]
+                ...state.messageList,
+                [action.chatId]: action.messages
                 }
-            }
-        }
-
-        // case DELETE_CHAT:{
-        //     return {
-        //         ...state,
-        //     }
-        // }
-        default: return state;
+            };
+      }
+      // case DELETE_CHAT:{
+      //     return {
+      //         ...state,
+      //     }
+      // }
+      default:
+        return state;
     }
 }
 
