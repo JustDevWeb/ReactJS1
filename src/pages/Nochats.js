@@ -1,13 +1,11 @@
-import ChatsList from "../components/ChatsList";
-import {useParams} from "react-router-dom";
+import ChatsList from "../components/ChatsList.js";
 
-const NoChats = ()=>{
-
-    return (
-        <div className={'container'}>
-            <ChatsList/>
-        </div>
-    )
-}
+const NoChats = () => {
+  return (
+    <div className={"container"}>
+      <ChatsList />
+    </div>
+  );
+};
 
 export default NoChats;

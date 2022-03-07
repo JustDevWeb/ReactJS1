@@ -3,61 +3,41 @@ import SendIcon from "@mui/icons-material/Send";
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
-import {addMessage} from "../store/messages/actions";
 
-const ControlPanel = ()=>{
+import {addMessageWithFB} from "../store/middleware";
 
-
-    const [value, setValue] = useState([]);
-    // const [login] = useState({ me: "me", bot: "bot" });
+const ControlPanel = () => {
 
 
-    const time = new Date();
-    const currentTime = `${time.getHours()}:${time.getMinutes()}`;
+    const [value, setValue] = useState('');
     const inputFocus = useRef(null);
-
-    const profileName=useSelector(state=>state.profile.name);
-    const messages= useSelector(state=>state.messages.messageList);
+    const profileName = useSelector(state => state.profile.name);
     const dispatch = useDispatch();
     const {chatId} = useParams();
 
-    const handleChange = useCallback ((event) => {
+
+    const handleChange = useCallback((event) => {
         setValue(event.target.value);
-    },[])
+    }, [value]);
 
-    const sendMessage= (text,author)=>{
-        dispatch(addMessage(chatId,{
-            text:text,
-            author:author
-        }))
-    };
 
-    const handleButton=()=>{
-        sendMessage(value,profileName);
-        setValue("");
-    };
+    const handleButton = useCallback(
+        () => {
 
-    //Auto scrolling
-    useEffect(() => {
-                inputFocus.current.focus();
-    });
+            const message = {
+                text: value,
+                author: profileName
+            };
+
+            dispatch(addMessageWithFB(chatId,message))
+            setValue('');
+        }, [value, chatId, profileName]);
 
 
     useEffect(() => {
-        let interval ;
-        const currentChat= messages[chatId];
-        if (currentChat?.length > 0 && currentChat[currentChat?.length - 1]?.author === profileName ) {
-                interval = setInterval(() => {
-                    const botMessage="this message was generated automatically"
-                    sendMessage(botMessage,"bot")
 
-                }, 1500);
-
-        }
-        return () => {
-            clearInterval(interval);
-        };
-    }, [messages[chatId]]);
+        inputFocus.current.focus();
+    }, []);
 
     //Auto scrolling
     // useEffect(() => {
@@ -82,7 +62,7 @@ const ControlPanel = ()=>{
                 disabled={!value}
                 onClick={handleButton}
                 variant="contained"
-                endIcon={<SendIcon />}
+                endIcon={<SendIcon/>}
             >
                 Send
             </Button>
