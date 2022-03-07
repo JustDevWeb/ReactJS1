@@ -2,7 +2,7 @@ import {getTime} from "../../lib/getTime";
 
 export const ADD_MESSAGE = "MESSAGES::ADD_MESSAGE";
 export const ADD_MESSAGE_WITH_SAGA = "MESSAGES::ADD_MESSAGE_WITH_SAGA";
-export const UPDATE_MESSAGES = "MESSAGES::UPDATE_MESSAGES";
+export const UPDATE_MESSAGES = 'MESSAGES::UPDATE_MESSAGES';
 
 
 export const addMessage = (chatId,message)=>({
@@ -33,9 +33,10 @@ export const addMessageWithThunk=(chatId,message)=>(dispatch,getState)=>{
 
 };
 
-export const updateMessages = (chatId, messages)=>({
-    TYPE: UPDATE_MESSAGES,
+export const updateMessages = (chatId, messages) => ({
+    type: UPDATE_MESSAGES,
     chatId,
     messages
 });
+
 

@@ -3,11 +3,8 @@ import SendIcon from "@mui/icons-material/Send";
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
-import {addMessageWithSaga, addMessageWithThunk} from "../store/messages/actions";
-import {getTime} from "../lib/getTime";
-import {getDatabase, push, ref, set} from "firebase/database";
-import firebase from "../services/firebase";
-import {addMessageWithFB, getMessagesByChatIdWithFB} from "../store/middleware";
+
+import {addMessageWithFB} from "../store/middleware";
 
 const ControlPanel = () => {
 

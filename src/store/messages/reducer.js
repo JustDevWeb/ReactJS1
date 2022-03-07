@@ -1,9 +1,10 @@
 import {ADD_MESSAGE, UPDATE_MESSAGES} from "./actions";
+import {DELETE_CHAT} from "../chats/actions";
 // import {DELETE_CHAT} from "../chats/actions";
 
 const initialState = {
     messageList:{}
-}
+};
 
 
 /**
@@ -37,21 +38,20 @@ const messagesReducer = (state = initialState, action) => {
         };
       }
 
+      case UPDATE_MESSAGES:
+        return {
+          ...state,
+          messageList: {
+            ...state.messageList,
+            [action.chatId]: action.messages
+          }
+        };
 
-      case UPDATE_MESSAGES: {
-            return {
-            ...state,
-                messageList: {
-                ...state.messageList,
-                [action.chatId]: action.messages
-                }
-            };
+      case DELETE_CHAT: {
+        return {
+          ...state,
+        };
       }
-      // case DELETE_CHAT:{
-      //     return {
-      //         ...state,
-      //     }
-      // }
       default:
         return state;
     }

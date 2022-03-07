@@ -51,6 +51,7 @@ export const initTrackerWithFB = (chatId)=> async (dispatch)=>{
     const data = snapshot.val();
     const chatIds = Object.keys(data);
     const chatArr = chatIds.map(item=>({id:item,name: data[item].name}));
+
     dispatch(chatListUpdate(chatArr));
 
   });
@@ -63,15 +64,11 @@ export const getMessagesByChatIdWithFB=(chatId)=>async(dispatch)=>{
   onValue(msgRef,(snapshot)=>{
     const data = snapshot.val();
     const msg = Object.values(data);
-
-    if(msg.length>0){
+    console.log(msg);
+    if(msg.length > 0){
       dispatch(updateMessages(chatId,msg));
     }
-
-
-
   });
-
 };
 
 

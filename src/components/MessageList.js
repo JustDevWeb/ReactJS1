@@ -8,7 +8,7 @@ import {
   Typography,
   Box,
 } from "@mui/material";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import LogoBot from "../assets/logobot.png";
 import { useParams } from "react-router-dom";
@@ -21,9 +21,10 @@ const MessageList = () => {
   // const [messages, setMessages] = useState([]);
   const { chatId } = useParams();
   const messagesEndRef = useRef(null);
+  const currentMessages = messages[chatId];
 
   useEffect(() => {
-    dispatch(getMessagesByChatIdWithFB(chatId));
+    dispatch(getMessagesByChatIdWithFB(chatId))
     messagesEndRef.current.scrollIntoView({ behavior: "auto" });
   }, [chatId]);
 
@@ -95,10 +96,12 @@ const MessageList = () => {
       <List
         className={"chat-box"}
          >
-        {Object.keys(messages).map((message, index) => renderMessage(message, index))}
+        {currentMessages?.map((message, index) => renderMessage(message, index))}
         <div ref={messagesEndRef} />
       </List>
     </div>
   );
 };
+
+
 export default MessageList;

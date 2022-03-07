@@ -32,7 +32,7 @@ function Routers() {
           margin: "0 auto",
         }}
       >
-        <Link className={"logo-link"} to={"/"}>
+          <Link className={"logo-link"} to={"/"}>
           <img className={"nav-logo"} src={MenuLogo} alt={"menu-logo"} />
           <h3>Messenger</h3>
         </Link>
@@ -75,11 +75,13 @@ function Routers() {
         <Route path="/" exact element={<Home />} />
         <Route path="/login" exact element={<Login />} />
         <Route path="/signup" exact element={<SignUp />} />
+
         <Route element={<RequiredAuth />}>
           <Route path="/chats/" exact element={<NoChats />} />
+          <Route path="/gists" element={<Gists />} />
           <Route path="/chats/:chatId" element={<ChatsDisplay />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/gists" element={<Gists />} />
+
         </Route>
         <Route path="*" element={<NoChats />} />
       </Routes>

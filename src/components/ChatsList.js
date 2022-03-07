@@ -2,10 +2,9 @@ import {Link, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {Button,Dialog, DialogTitle, TextField} from "@mui/material";
 import {useEffect, useState} from "react";
-import {addChat, deleteChat} from "../store/chats/actions";
+
 import {Delete} from "@mui/icons-material";
-import {getDatabase,ref,push,set,get,child,remove} from 'firebase/database'
-import firebase from "../services/firebase";
+
 import {addChatWithFb, deleteChatWithFb, initTrackerWithFB} from "../store/middleware";
 
 
@@ -42,17 +41,17 @@ const ChatsList = ()=>{
     return (
       <div style={{padding:'10px'}} className={"chats-list"} >
         {chats.map((chat, index) => (
-          <div key={index} >
-            <Link to={`/chats/${chat.id}`}>
-              <b style={{ color: chat.id === chatId ? "black" : "green" }}>
+          <div key={index} className={"chat-list-item"} style={{borderBottom:"1px solid black" , width:"200px", padding:"5px"}} >
+            <Link to={`/chats/${chat.id}`} style={{display:"flex", justifyContent:"space-between", alignItems:"center" }} >
+              <b style={{ color: chat.id === chatId ? "blue" : "gray" }}>
                 {chat.name}
               </b>
-              <button
+              <button className={"chat-list-item-button"} style={{padding:"0",width:"30px",display:"flex", alignItems:"center", justifyContent:"center"}}
                 onClick={() => {
                   handleDelete(chat.id);
                 }}
               >
-                <Delete />
+                <Delete fontSize={"small"} />
               </button>
             </Link>
             {/*<Chip component={Link} to={`/chats/${chat.id}`} clickable label={chat.name} onDelete={()=>{handleDelete(index)}} />*/}

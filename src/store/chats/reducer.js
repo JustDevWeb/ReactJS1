@@ -1,4 +1,4 @@
-import {ADD_CHAT, CHAT_LIST_UPDATE, chatListUpdate, DELETE_CHAT} from "./actions";
+import {ADD_CHAT, CHAT_LIST_UPDATE, DELETE_CHAT} from "./actions";
 
 const initialState = {
     chatList:[]
